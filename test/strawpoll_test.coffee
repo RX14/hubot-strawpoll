@@ -13,4 +13,4 @@ describe 'strawpoll', ->
     require('../src/strawpoll')(@robot)
 
   it 'registers a respond listener', ->
-    expect(@robot.respond).to.have.been.calledWith(/\/strawpoll/).withArgs(/1/, /2/, /3/)
+    expect(@robot.respond).to.have.been.calledWith(/strawpoll ?(.*)/i)
