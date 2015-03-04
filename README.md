@@ -6,5 +6,5 @@ Create Strawpolls with Hubot
 
 ## Commands
 
- * hubot strawpoll "<option 1>" "<option 2>" "<option x>" - Creates Strawpoll multiple selection with options
- * hubot strawpoll <option1> <option2> <option3> - Creates Strawpoll multiple selection  with options
+ * hubot strawpoll "option 1" "option 2" "option N" - Creates Strawpoll multiple selection with options
+ * hubot strawpoll option1 option2 optionN - Creates Strawpoll multiple selection  with options
