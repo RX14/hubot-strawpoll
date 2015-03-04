@@ -14,3 +14,4 @@ describe 'strawpoll', ->
 
   it 'registers a respond listener', ->
     expect(@robot.respond).to.have.been.calledWith(/strawpoll "(.*)"/i)
+    expect(@robot.respond).to.have.been.calledWith(/strawpoll ([^"]+)/i)
