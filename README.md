@@ -1,6 +1,6 @@
 # Hubot Strawpoll
 
-Create Strawpolls with Hubot
+Create Strawpolls, http://strawpoll.me/, with Hubot
 
 [![Build Status](https://travis-ci.org/ericsaupe/hubot-strawpoll.svg?branch=master)](https://travis-ci.org/ericsaupe/hubot-strawpoll)
 
