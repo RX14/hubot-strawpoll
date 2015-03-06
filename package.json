@@ -1,7 +1,7 @@
 {
   "name": "hubot-strawpoll",
   "description": "Create Strawpolls with Hubot",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "author": "Eric Saupe <eric@sau.pe>",
   "license": "MIT",
 
