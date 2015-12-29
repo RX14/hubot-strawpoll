@@ -1,40 +1,25 @@
 {
   "name": "hubot-strawpoll",
   "description": "Create Strawpolls with Hubot",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "author": "Eric Saupe <eric@sau.pe>",
   "license": "MIT",
-
   "keywords": [
     "hubot",
     "hubot-scripts",
     "strawpoll",
     "hubot-strawpoll"
   ],
-
   "repository": {
     "type": "git",
-    "url": "git://github.com/ericsaupe/hubot-strawpoll.git"
+    "url": "git://github.com/RX14/hubot-strawpoll.git"
   },
-
   "bugs": {
-    "url": "https://github.com/ericsaupe/hubot-strawpoll/issues"
+    "url": "https://github.com/RX14/hubot-strawpoll/issues"
   },
-
   "dependencies": {
-    "coffee-script": "~1.6"
+    "coffee-script": "~1.10",
+    "shell-quote": "^1.4.3"
   },
-
-  "devDependencies": {
-    "mocha": "*",
-    "chai": "*",
-    "sinon-chai": "*",
-    "sinon": "*"
-  },
-
-  "main": "index.coffee",
-
-  "scripts": {
-    "test": "script/test"
-  }
+  "main": "index.coffee"
 }

@@ -2,44 +2,39 @@
 #   Allows Hubot to create a Strawpoll
 #
 # Dependencies:
-#   'querystring'
+#   'shell-quote'
 #
 # Configuration:
 #   None
 #
 # Commands:
-#   hubot strawpoll "<option 1>" "<option 2>" "<option x>" - Creates Strawpoll multiple selection with options
-#   hubot strawpoll <option1> <option2> <option3> - Creates Strawpoll multiple selection  with options
+#   hubot strawpoll "title message" option1 "option 2" "<option x>" - Creates Strawpoll multiple selection with options
 #
 # Author:
-#   ericsaupe
+#   RX14
 
-QS = require 'querystring'
+parse = require('shell-quote').parse
 
 module.exports = (robot) ->
-    robot.respond /strawpoll "(.*)"/i, (msg) ->
-        options = msg.match[1].split('" "')
-        data = QS.stringify({
-          title: "Strawpoll " + Math.floor(Math.random() * 10000),
-          options: options,
-          permissive: true
-          })
-        req = robot.http('http://strawpoll.me/api/v2/polls').headers({'X-Requested-With': 'XMLHttpRequest', 'Content-Type': 'application/x-www-form-urlencoded'}).post(data) (err, res, body) ->
-          if err
-            msg.send "Encountered an error :( #{err}"
-            return
-          msg.reply('http://strawpoll.me/' + JSON.parse(body)['id'])
+    robot.respond /strawpoll (.*)/i, (msg) ->
+        options = parse msg.match[1]
+        title = options.shift()
 
-    robot.respond /strawpoll ([^"]+)/i, (msg) ->
-        options = msg.match[1].split(' ')
-        data = QS.stringify({
-          title: "Strawpoll " + Math.floor(Math.random() * 10000),
-          options: options,
-          permissive: true
-          })
-        req = robot.http('http://strawpoll.me/api/v2/polls').headers({'X-Requested-With': 'XMLHttpRequest', 'Content-Type': 'application/x-www-form-urlencoded'}).post(data) (err, res, body) ->
-          if err
-            msg.send "Encountered an error :( #{err}"
-            return
-          msg.reply('http://strawpoll.me/' + JSON.parse(body)['id'])
+        data = JSON.stringify
+            title: title
+            options: options
+
+        req = robot.http('http://strawpoll.me/api/v2/polls')
+                   .headers({'Content-Type': 'application/json'})
+                   .post(data) (err, res, body) ->
+            if err
+                msg.send "Encountered an error :( #{err}"
+                return
+
+            json = JSON.parse(body)
+            if json.error
+                msg.send "Encountered an error: #{json.error} (#{json.code})"
+                return
+
+            msg.reply("http://strawpoll.me/#{json.id}")
 
